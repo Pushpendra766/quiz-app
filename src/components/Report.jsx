@@ -2,7 +2,7 @@ import React from "react";
 
 const Report = ({ name, userResponse }) => {
   const score = userResponse.reduce((acc, el) => {
-    if (el.correct_response === el.user_response) {
+    if (el && el.correct_response === el.user_response) {
       return acc + 1;
     } else {
       return acc;
@@ -33,27 +33,30 @@ const Report = ({ name, userResponse }) => {
           </tr>
         </thead>
         <tbody>
-          {userResponse.map((response) => {
-            return (
-              <tr key={response.index}>
-                <td className="pl-2 py-4 whitespace-no-wrap border-b border-gray-300">
-                  {response.index + 1}. {response.question}
-                </td>
-                <td className="pl-2 py-4 whitespace-no-wrap border-b border-gray-300">
-                  {response.correct_response}
-                </td>
-                <td
-                  className={`pl-2 py-4 whitespace-no-wrap border-b border-gray-300 font-bold ${
-                    response.correct_response === response.user_response
-                      ? "text-[#0BDA51]"
-                      : "text-[#FF0000]"
-                  }`}
-                >
-                  {response.user_response}
-                </td>
-              </tr>
-            );
-          })}
+          {userResponse &&
+            userResponse.map((response) => {
+              if (response) {
+                return (
+                  <tr key={response?.index}>
+                    <td className="pl-2 py-4 whitespace-no-wrap border-b border-gray-300">
+                      {response.index + 1}. {response.question}
+                    </td>
+                    <td className="pl-2 py-4 whitespace-no-wrap border-b border-gray-300">
+                      {response.correct_response}
+                    </td>
+                    <td
+                      className={`pl-2 py-4 whitespace-no-wrap border-b border-gray-300 font-bold ${
+                        response.correct_response === response.user_response
+                          ? "text-[#0BDA51]"
+                          : "text-[#FF0000]"
+                      }`}
+                    >
+                      {response.user_response}
+                    </td>
+                  </tr>
+                );
+              }
+            })}
         </tbody>
       </table>
     </div>
