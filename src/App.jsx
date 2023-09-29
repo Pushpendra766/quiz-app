@@ -23,7 +23,7 @@ function App() {
   }, [isStarted]);
 
   return (
-    <div className="flex mt-10 md:mt-20 items-center justify-center">
+    <div className="flex my-10 md:my-20 items-center justify-center">
       <div
         className={`bg-[#fff] py-2 px-6 rounded-md shadow-lg shadow-black ${
           isStarted && "w-full md:w-2/3 lg:w-1/2 xl:w-1/3"
